@@ -1,3 +1,38 @@
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+
+/* purgecss end ignore */
 @tailwind utilities;
+
+.strike {
+  @apply relative;
+}
+
+.strike::after {
+  content: "";
+  left: 0;
+  top: 50%;
+  width: 100%;
+  @apply border-b-4 border-black absolute w-full opacity-100;
+}
+
+.animation-hover:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  height: 4px;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  @apply w-0 bg-black left-0.5 block bottom-0 absolute;
+}
+
+.animation-hover:hover:after {
+  @apply left-0 w-full;
+}
+
+.active:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  height: 5px;
+  margin-top: 10px;
+  @apply w-full bg-gray-800 block -bottom-3 absolute;
+}
