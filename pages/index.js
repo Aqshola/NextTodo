@@ -58,7 +58,7 @@ export default function Home() {
         <a className="font-bold col-span-1 md:col-span-4 text-right">Logout</a>
       </nav>
       <div className="max-w-screen-2xl min-h-screen h-screen">
-        <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full">
+        <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full relative">
           <SideNav nav={nav} />
           <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col">
             <h3 className="text-3xl">Hi User!</h3>
