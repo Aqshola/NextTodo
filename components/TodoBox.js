@@ -14,7 +14,9 @@ const TodoBox = ({ value = "", finish = true }) => {
           stroke="currentColor"
           width="20px"
           height="20px"
-          className="invisible"
+          className={
+            "transition ease-in" + (finish ? " opacity-100" : " opacity-0")
+          }
         >
           <path
             strokeLinecap="round"
