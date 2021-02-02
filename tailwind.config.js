@@ -6,11 +6,14 @@ module.exports = {
       transitionProperty: {
         width: "width",
         height: "height",
+        borderWidth: "borderWidth",
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderWidth: ["focus"],
+    },
   },
   plugins: [],
 };

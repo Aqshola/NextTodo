@@ -1,23 +1,15 @@
 import { useState } from "react";
 import data from "./api/data";
 import TodoBox from "../components/TodoBox";
+import SideNav from "../components/SideNav";
 import WrapperTodo from "../components/TodoSection/WrapperTodo";
 
 export default function Home() {
   const [nav, setnav] = useState(false);
-  const [ongoing, setongoing] = useState(true);
-  const [finish, setfinish] = useState(true);
+
   const _handleNav = () => {
     setnav(!nav);
   };
-  const _handleOngoing = () => {
-    setongoing(!ongoing);
-  };
-
-  const _handleFinish = () => {
-    setfinish(!finish);
-  };
-
   return (
     <>
       <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-between  p-2 items-center col-span-10 col-start-2 px-3">
@@ -67,34 +59,7 @@ export default function Home() {
       </nav>
       <div className="max-w-screen-2xl min-h-screen h-screen">
         <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full">
-          <div
-            className={
-              "h-screen shadow-xl pr-3 transition-opacity absolute md:shadow-none md:pr-0 md:h-auto md:relative md:opacity-100 md:visible md:w-auto md:col-span-2 row-span-2 flex flex-col bg-yellow-300 rounded-tr-3xl py-10 z-10" +
-              (nav ? " visible w-auto opacity-100" : " w-0 invisible opacity-0")
-            }
-          >
-            <div className="flex flex-col pl-3 space-y-3 mb-10">
-              <ul className="space-y-6">
-                <li className="relative p-1">
-                  <a
-                    href=""
-                    className="text-2xl relative active block font-semibold"
-                  >
-                    Personal
-                  </a>
-                </li>
-                <li className="w-max relative p-1">
-                  <a href="" className="text-2xl animation-hover">
-                    Work
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <button className="mt-10 bg-white w-max p-3 rounded-tr-3xl px-8">
-              Add Label
-            </button>
-          </div>
+          <SideNav nav={nav} />
           <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col">
             <h3 className="text-3xl">Hi User!</h3>
             <div className="flex items-center justify-center mt-10 w-full">
@@ -102,7 +67,7 @@ export default function Home() {
                 type="text"
                 name=""
                 id=""
-                className="border-b-2 border-yellow-300 text-xl pb-3 w-full"
+                className="transition-all border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-400"
                 placeholder="create task..."
               />
               <button>
