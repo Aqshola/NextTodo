@@ -3,7 +3,7 @@ const TodoBox = ({ id, value = "", finish = true }) => {
     <div
       className={
         "p-3 rounded-lg flex space-x-3 mb-3" +
-        (finish ? " bg-yellow-200" : " bg-yellow-300")
+        (finish ? " bg-yellow-secondary" : " bg-yellow-primary")
       }
     >
       <button className="rounded-full border-2 border-black focus:outline-none">

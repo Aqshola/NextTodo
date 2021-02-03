@@ -51,12 +51,12 @@ export default function Home() {
               d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
             />
           </svg>
-          <h5 className="hidden md:block">Todo</h5>
+          <h5 className="hidden md:block font-semibold ">Todo</h5>
         </div>
-        <p className="font-bold col-span-1 md:col-span-1 text-center">
+        <p className="font-bold col-span-1 md:col-span-1 text-center comfortaa ">
           1 february 2021
         </p>
-        <button className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300">
+        <button className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300 comfortaa">
           Logout
         </button>
       </nav>
@@ -68,25 +68,25 @@ export default function Home() {
               <h2 className="flex-grow font-semibold text-yellow-400 text-xl visible md:invisible">
                 Personal
               </h2>
-              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-500 text-white font-bold rounded-xl md:-right-20">
+              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700">
                 Delete Personal
               </button>
             </div>
-            <h3 className="text-3xl">Hi User!</h3>
+            <h3 className="text-3xl comfortaa">Hi User!</h3>
 
-            <div className="flex items-center justify-center mt-10 w-full">
+            <div className="flex items-center justify-center mt-5 w-full">
               <input
                 type="text"
                 name=""
                 id=""
-                className="transition-all border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-400"
+                className="transition-all border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-primary"
                 placeholder="create task..."
               />
               <button className="focus:outline-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
-                  className=" transition fill-current text-yellow-300 hover:text-yellow-400"
+                  className=" transition fill-current text-yellow-primary hover:text-yellow-500"
                   width="40px"
                   height="40px"
                 >

@@ -9,7 +9,7 @@ const SideNav = ({ nav, reference }) => {
   return (
     <div
       className={
-        "transition-all flex flex-col transform absolute pr-3 z-10 h-full shadow-xl bg-yellow-300 ease-out duration-100  rounded-tr-lg py-10  sideNavBG " +
+        "transition-all flex flex-col transform absolute pr-3 z-10 h-full shadow-xl bg-yellow-primary ease-out duration-100  rounded-tr-lg py-10  sideNavBG " +
         (nav
           ? " opacity-100 translate-x-0 visible "
           : "  -translate-x-10 invisible  opacity-0")
