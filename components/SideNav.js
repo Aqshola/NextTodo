@@ -1,10 +1,15 @@
-import { useRef } from "react";
+import { useState } from "react";
 
 const SideNav = ({ nav, reference }) => {
+  const [inputLabel, setinputLabel] = useState(false);
+
+  const _handleInputLabel = () => {
+    setinputLabel(!inputLabel);
+  };
   return (
     <div
       className={
-        "transition-all transform absolute pr-3 z-10 h-full shadow-xl bg-yellow-300 ease-out duration-100  rounded-tr-lg py-10  sideNavBG " +
+        "transition-all flex flex-col transform absolute pr-3 z-10 h-full shadow-xl bg-yellow-300 ease-out duration-100  rounded-tr-lg py-10  sideNavBG " +
         (nav
           ? " opacity-100 translate-x-0 visible "
           : "  -translate-x-10 invisible  opacity-0")
@@ -25,7 +30,23 @@ const SideNav = ({ nav, reference }) => {
         </ul>
       </div>
 
-      <button className="mt-10 bg-white w-max p-3 rounded-tr-3xl px-8">
+      <input
+        type="text"
+        placeholder="New Label..."
+        className={
+          "p-2 mt-10 rounded-r-2xl transition-all transform w-min" +
+          (inputLabel
+            ? nav
+              ? " visible opacity-100"
+              : " "
+            : " -translate-x-10 invisible opacity-0")
+        }
+      />
+
+      <button
+        className="mt-10 bg-white w-max p-3 rounded-tr-3xl px-8 focus:outline-none"
+        onClick={_handleInputLabel}
+      >
         Add Label
       </button>
     </div>

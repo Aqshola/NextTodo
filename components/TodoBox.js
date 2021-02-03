@@ -1,12 +1,12 @@
-const TodoBox = ({ value = "", finish = true }) => {
+const TodoBox = ({ id, value = "", finish = true }) => {
   return (
     <div
       className={
-        "p-3 rounded-lg flex space-x-3 mb-3 transition-transform transform hover:scale-110" +
+        "p-3 rounded-lg flex space-x-3 mb-3" +
         (finish ? " bg-yellow-200" : " bg-yellow-300")
       }
     >
-      <button className="rounded-full border-2 border-black">
+      <button className="rounded-full border-2 border-black focus:outline-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -31,7 +31,7 @@ const TodoBox = ({ value = "", finish = true }) => {
           {value}
         </p>
       </div>
-      <button>
+      <button className="focus:outline-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

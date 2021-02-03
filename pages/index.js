@@ -13,7 +13,7 @@ export default function Home() {
   };
   return (
     <>
-      <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-between  p-2 items-center col-span-10 col-start-2 px-3">
+      <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-center  p-2 items-center col-span-10 col-start-2 px-3">
         <div className="flex items-center col-span-1 md:col-span-5">
           <button onClick={_handleNav} className="focus:outline-none">
             <svg
@@ -56,13 +56,24 @@ export default function Home() {
         <p className="font-bold col-span-1 md:col-span-1 text-center">
           1 february 2021
         </p>
-        <a className="font-bold col-span-1 md:col-span-4 text-right">Logout</a>
+        <button className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300">
+          Logout
+        </button>
       </nav>
       <div className="max-w-screen-2xl min-h-screen h-screen">
         <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full relative">
           <SideNav nav={nav} reference={slidNav} />
-          <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col">
+          <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col relative">
+            <div className="w-full flex mb-4 items-center">
+              <h2 className="flex-grow font-semibold text-yellow-400 text-xl visible md:invisible">
+                Personal
+              </h2>
+              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-500 text-white font-bold rounded-xl md:-right-20">
+                Delete Personal
+              </button>
+            </div>
             <h3 className="text-3xl">Hi User!</h3>
+
             <div className="flex items-center justify-center mt-10 w-full">
               <input
                 type="text"
@@ -71,13 +82,13 @@ export default function Home() {
                 className="transition-all border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-400"
                 placeholder="create task..."
               />
-              <button>
+              <button className="focus:outline-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
-                  className="fill-current text-yellow-300"
-                  width="35px"
-                  height="35px"
+                  className=" transition fill-current text-yellow-300 hover:text-yellow-400"
+                  width="40px"
+                  height="40px"
                 >
                   <path
                     fillRule="evenodd"
@@ -88,19 +99,29 @@ export default function Home() {
               </button>
             </div>
             <WrapperTodo title="OnGoing">
-              {data.map((todo, i) => {
+              {data.map((todo) => {
                 if (!todo.finish) {
                   return (
-                    <TodoBox key={i} finish={todo.finish} value={todo.todo} />
+                    <TodoBox
+                      key={todo.id}
+                      id={todo.id}
+                      finish={todo.finish}
+                      value={todo.todo}
+                    />
                   );
                 }
               })}
             </WrapperTodo>
             <WrapperTodo title="Finish">
-              {data.map((todo, i) => {
+              {data.map((todo) => {
                 if (todo.finish) {
                   return (
-                    <TodoBox key={i} finish={todo.finish} value={todo.todo} />
+                    <TodoBox
+                      key={todo.id}
+                      id={todo.id}
+                      finish={todo.finish}
+                      value={todo.todo}
+                    />
                   );
                 }
               })}
