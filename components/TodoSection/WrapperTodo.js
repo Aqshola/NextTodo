@@ -33,10 +33,10 @@ const WrapperTodo = ({ children, title }) => {
       </button>
       <div
         className={
-          "mt-3 transition transform" +
+          "mt-3 transition-all transform over duration-75" +
           (viewChild
-            ? " opacity-100 visible h-auto ease-in"
-            : " opacity-0 invisible h-0 -translate-y-5 ease-out")
+            ? " opacity-100 visible  "
+            : " opacity-0 invisible  -translate-y-5 h-0")
         }
       >
         {children}
