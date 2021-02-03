@@ -37,9 +37,6 @@
   @apply w-full bg-gray-800 block -bottom-3 absolute;
 }
 
-.sidenavSM {
-  @apply h-full pr-3 absolute z-10 overflow-hidden shadow-xl;
-}
 .sideNavBG {
-  @apply md:shadow-none md:pr-0 md:h-auto md:relative md:opacity-100 md:visible md:w-auto md:col-span-2;
+  @apply md:shadow-none md:pr-0 md:h-auto md:relative md:opacity-100 md:visible md:w-auto md:col-span-2 md:translate-x-0;
 }

@@ -1,14 +1,16 @@
-const SideNav = ({ nav }) => {
+import { useRef } from "react";
+
+const SideNav = ({ nav, reference }) => {
   return (
     <div
       className={
-        "sidenavSM sideNavBG overflow-x-hidden transform md:transform-none transition duration-150 row-span-2 flex flex-col bg-yellow-300 rounded-tr-3xl py-10 z-10" +
+        "transition-all transform absolute pr-3 z-10 h-full shadow-xl bg-yellow-300 ease-out duration-100  rounded-tr-lg py-10  sideNavBG " +
         (nav
-          ? " w-auto opacity-100 ease-in"
-          : " -translate-x-10 opacity-0 w-0 ease-out")
+          ? " opacity-100 translate-x-0 visible "
+          : "  -translate-x-10 invisible  opacity-0")
       }
     >
-      <div className="flex transition flex-col pl-3 space-y-3 mb-10">
+      <div className="flex flex-col pl-3 space-y-3 mb-10">
         <ul className="space-y-6">
           <li className="relative p-1">
             <a href="" className="text-2xl relative active block font-semibold">
@@ -21,19 +23,6 @@ const SideNav = ({ nav }) => {
             </a>
           </li>
         </ul>
-
-        {/* <ul className="space-y-6">
-          <li className="relative p-1">
-            <a href="" className="text-2xl relative active block font-semibold">
-              Personal
-            </a>
-          </li>
-          <li className="w-max relative p-1">
-            <a href="" className="text-2xl animation-hover">
-              Work
-            </a>
-          </li>
-        </ul> */}
       </div>
 
       <button className="mt-10 bg-white w-max p-3 rounded-tr-3xl px-8">

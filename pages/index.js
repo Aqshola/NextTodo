@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import data from "./api/data";
 import TodoBox from "../components/TodoBox";
 import SideNav from "../components/SideNav";
 import WrapperTodo from "../components/TodoSection/WrapperTodo";
 
 export default function Home() {
+  const slidNav = useRef(null);
   const [nav, setnav] = useState(false);
 
   const _handleNav = () => {
@@ -59,7 +60,7 @@ export default function Home() {
       </nav>
       <div className="max-w-screen-2xl min-h-screen h-screen">
         <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full relative">
-          <SideNav nav={nav} />
+          <SideNav nav={nav} reference={slidNav} />
           <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col">
             <h3 className="text-3xl">Hi User!</h3>
             <div className="flex items-center justify-center mt-10 w-full">
