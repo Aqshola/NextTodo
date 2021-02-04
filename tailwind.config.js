@@ -24,5 +24,5 @@ module.exports = {
       borderWidth: ["focus"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
