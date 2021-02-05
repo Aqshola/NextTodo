@@ -16,7 +16,7 @@ export default function Login({ switchAuth }) {
         className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0"
       />
       <div className=" flex flex-col space-y-3">
-        <button className="w-max bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0">
+        <button className="transition w-max bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0 hover:shadow-md hover:bg-yellow-500">
           Login
         </button>
         <p>
