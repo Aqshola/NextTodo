@@ -34,7 +34,7 @@ const SideNav = ({ nav, reference }) => {
         type="text"
         placeholder="New Label..."
         className={
-          "p-2 mt-10 rounded-r-2xl transition-all transform w-min" +
+          "p-2 mt-10 border-0 rounded-r-2xl transition-all transform w-min outline-none focus:ring-0 focus:outline-none" +
           (inputLabel
             ? nav
               ? " visible opacity-100"

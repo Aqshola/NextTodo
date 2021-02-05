@@ -68,7 +68,7 @@ export default function Home() {
               <h2 className="flex-grow font-semibold text-yellow-400 text-xl visible md:invisible">
                 Personal
               </h2>
-              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700">
+              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700  focus:outline-none focus:ring-0">
                 Delete Personal
               </button>
             </div>
@@ -79,7 +79,7 @@ export default function Home() {
                 type="text"
                 name=""
                 id=""
-                className="transition-all border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-primary"
+                className="transition-all outline-none border-0 border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-primary focus:outline-none focus:ring-0"
                 placeholder="create task..."
               />
               <button className="focus:outline-none">
