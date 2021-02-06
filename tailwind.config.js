@@ -22,6 +22,7 @@ module.exports = {
   variants: {
     extend: {
       borderWidth: ["focus"],
+      opacity: ["disabled"],
     },
   },
   plugins: [require("@tailwindcss/forms")],

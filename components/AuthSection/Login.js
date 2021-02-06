@@ -1,16 +1,11 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { logIn, loadUser } from "../../redux/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../redux/actions/auth";
 
 export default function Login({ switchAuth }) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadUser());
-  }, [loadUser]);
-
   const { register, handleSubmit } = useForm();
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const _handleLogin = async (data) => {
     dispatch(logIn(data));
@@ -36,8 +31,20 @@ export default function Login({ switchAuth }) {
         ref={register}
       />
       <div className=" flex flex-col space-y-3">
-        <button className="transition w-max bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0 hover:shadow-md hover:bg-yellow-500">
-          Login
+        <button
+          className="transition w-full  bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0 hover:shadow-md hover:bg-yellow-500 flex items-center md:w-max justify-center disabled:opacity-50"
+          disabled={auth.loading}
+        >
+          <div
+            className={
+              "rounded-full h-10 w-10 border-4 border-t-4 border-yellow-primary animate-spin  " +
+              (auth.loading ? " block" : " hidden")
+            }
+            style={{ borderTopColor: "white" }}
+          >
+            {" "}
+          </div>
+          <p className={auth.loading ? " hidden" : " block"}>Login</p>
         </button>
         <p>
           Didnt Have Account?{" "}

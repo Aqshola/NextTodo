@@ -1,4 +1,10 @@
-import { LOAD_USER, CLEAR_USER, LOGIN_USER, LOGOUT_USER } from "../types";
+import {
+  LOAD_USER,
+  CLEAR_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+  AUTH_LOADING,
+} from "../types";
 
 const initialState = {
   user: {},
@@ -18,6 +24,8 @@ export default function auth(state = initialState, action) {
     case CLEAR_USER:
       return { ...state, user: {}, loading: false, islogged: false };
 
+    case AUTH_LOADING:
+      return { ...state, loading: true };
     default:
       return state;
   }

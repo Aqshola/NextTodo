@@ -1,12 +1,19 @@
 import { authFire, db } from "../../lib/fb";
-import { LOAD_USER, LOGIN_USER, LOGOUT_USER } from "../types";
+import {
+  AUTH_LOADING,
+  CLEAR_USER,
+  LOAD_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+} from "../types";
 
 export const logIn = ({ email, password }) => async (dispatch) => {
+  dispatch({ type: AUTH_LOADING });
   try {
     await authFire().signInWithEmailAndPassword(email, password);
     dispatch({ type: LOGIN_USER });
   } catch (err) {
-    console.log(err);
+    dispatch({ type: CLEAR_USER });
   }
 };
 
@@ -14,7 +21,6 @@ export const loadUser = () => async (dispatch) => {
   try {
     authFire().onAuthStateChanged(async (user) => {
       if (user) {
-        console.log("Loaded");
         await db()
           .collection("users")
           .doc(user.uid)
@@ -28,7 +34,7 @@ export const loadUser = () => async (dispatch) => {
             });
           });
       } else {
-        console.log("No user");
+        dispatch(clearUser());
       }
     });
   } catch (err) {
@@ -43,4 +49,8 @@ export const logOut = () => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const clearUser = () => async (dispatch) => {
+  dispatch({ type: CLEAR_USER });
 };
