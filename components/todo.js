@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import data from "../pages/api/data";
 import TodoBox from "../components/TodoBox";
 import SideNav from "../components/SideNav";
 import WrapperTodo from "./TodoSection/WrapperTodo";
 import { logOut } from "../redux/actions/auth";
 import { getTodo, addTodo } from "../redux/actions/todo";
+import { removeTag } from "../redux/actions/tags";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
@@ -16,9 +16,13 @@ export default function Home() {
   const tags = useSelector((state) => state.tag);
   const todos = useSelector((state) => state.todo);
 
+  const buttonSide = useRef(null);
+
   useEffect(() => {
-    dispatch(getTodo(auth.user.id, tags.current_tags));
-  }, [getTodo, tags.current_tags]);
+    if (!auth.loading && auth.user) {
+      dispatch(getTodo(auth.user.id, tags.current_tags));
+    }
+  }, [auth.loading, auth.user, getTodo, tags.current_tags]);
 
   const _inputTodo = (e) => {
     settodoValue(e.target.value);
@@ -51,7 +55,11 @@ export default function Home() {
     <>
       <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-center  p-2 items-center col-span-10 col-start-2 px-3">
         <div className="flex items-center col-span-1 md:col-span-5">
-          <button onClick={_handleNav} className="focus:outline-none">
+          <button
+            onClick={_handleNav}
+            className="focus:outline-none"
+            ref={buttonSide}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -99,16 +107,21 @@ export default function Home() {
           Logout
         </button>
       </nav>
-      <div className="max-w-screen-2xl min-h-screen h-screen">
+      <div className="max-w-screen-2xl min-h-screen h-screen overflow-x-hidden">
         <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full relative">
-          <SideNav nav={nav} />
+          <SideNav nav={nav} handleNav={setnav} parentButton={buttonSide} />
           <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col relative">
             <div className="w-full flex mb-4 items-center">
               <h2 className="flex-grow font-semibold text-yellow-400 text-xl visible md:invisible">
-                Personal
+                {tags.current_tags}
               </h2>
-              <button className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700  focus:outline-none focus:ring-0">
-                Delete Personal
+              <button
+                className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700  focus:outline-none focus:ring-0"
+                onClick={() =>
+                  dispatch(removeTag(auth.user.id, tags.current_tags))
+                }
+              >
+                Delete {tags.current_tags}
               </button>
             </div>
             <h3 className="text-3xl comfortaa">Hi User!</h3>
