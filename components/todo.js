@@ -1,18 +1,35 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import data from "../pages/api/data";
 import TodoBox from "../components/TodoBox";
 import SideNav from "../components/SideNav";
 import WrapperTodo from "./TodoSection/WrapperTodo";
-
-import { authFire } from "../lib/fb";
-
 import { logOut } from "../redux/actions/auth";
-import { useDispatch } from "react-redux";
+import { getTodo, addTodo } from "../redux/actions/todo";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const slidNav = useRef(null);
   const [nav, setnav] = useState(false);
+  const [todoValue, settodoValue] = useState("");
+
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const tags = useSelector((state) => state.tag);
+  const todos = useSelector((state) => state.todo);
+
+  useEffect(() => {
+    dispatch(getTodo(auth.user.id, tags.current_tags));
+  }, [getTodo, tags.current_tags]);
+
+  const _inputTodo = (e) => {
+    settodoValue(e.target.value);
+  };
+
+  const _addTodo = () => {
+    if (todoValue !== "" || todoValue !== " ") {
+      dispatch(addTodo(auth.user.id, todoValue, tags.current_tags));
+      settodoValue("");
+    }
+  };
 
   const _handleLogOut = async () => {
     dispatch(logOut());
@@ -21,6 +38,7 @@ export default function Home() {
   const _handleNav = () => {
     setnav(!nav);
   };
+
   return (
     <>
       <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-center  p-2 items-center col-span-10 col-start-2 px-3">
@@ -75,7 +93,7 @@ export default function Home() {
       </nav>
       <div className="max-w-screen-2xl min-h-screen h-screen">
         <div className="flex md:grid md:grid-cols-10 md:grid-rows-1 h-full relative">
-          <SideNav nav={nav} reference={slidNav} />
+          <SideNav nav={nav} />
           <div className="w-full mt-5 md:mt-0 p-5 md:col-start-5 items-center md:col-span-3 flex flex-col relative">
             <div className="w-full flex mb-4 items-center">
               <h2 className="flex-grow font-semibold text-yellow-400 text-xl visible md:invisible">
@@ -90,12 +108,15 @@ export default function Home() {
             <div className="flex items-center justify-center mt-5 w-full">
               <input
                 type="text"
-                name=""
-                id=""
+                name="inputTodo"
+                onChange={_inputTodo}
                 className="transition-all outline-none border-0 border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-primary focus:outline-none focus:ring-0"
                 placeholder="create task..."
               />
-              <button className="focus:outline-none">
+              <button
+                className="focus:outline-none transition transform focus:rotate-180"
+                onClick={_addTodo}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -112,32 +133,36 @@ export default function Home() {
               </button>
             </div>
             <WrapperTodo title="OnGoing">
-              {data.map((todo) => {
-                if (!todo.finish) {
-                  return (
-                    <TodoBox
-                      key={todo.id}
-                      id={todo.id}
-                      finish={todo.finish}
-                      value={todo.todo}
-                    />
-                  );
-                }
-              })}
+              {!auth.loading &&
+                auth.user &&
+                todos.todo.map((todo) => {
+                  if (!todo.data().done) {
+                    return (
+                      <TodoBox
+                        key={todo.id}
+                        id={todo.id}
+                        finish={todo.data().done}
+                        value={todo.data().value}
+                      />
+                    );
+                  }
+                })}
             </WrapperTodo>
             <WrapperTodo title="Finish">
-              {data.map((todo) => {
-                if (todo.finish) {
-                  return (
-                    <TodoBox
-                      key={todo.id}
-                      id={todo.id}
-                      finish={todo.finish}
-                      value={todo.todo}
-                    />
-                  );
-                }
-              })}
+              {!auth.loading &&
+                auth.user &&
+                todos.todo.map((todo) => {
+                  if (todo.data().done) {
+                    return (
+                      <TodoBox
+                        key={todo.id}
+                        id={todo.id}
+                        finish={todo.data().done}
+                        value={todo.data().value}
+                      />
+                    );
+                  }
+                })}
             </WrapperTodo>
           </div>
         </div>

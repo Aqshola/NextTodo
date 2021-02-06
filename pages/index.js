@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "../redux/actions/auth";
 
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
   useEffect(() => {
@@ -12,4 +12,6 @@ export default function Home() {
   }, [loadUser]);
 
   return state.islogged ? <Todo /> : <Auth />;
-}
+};
+
+export default Home;

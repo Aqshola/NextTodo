@@ -1,12 +1,44 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeTodo, updateTodo } from "../redux/actions/todo";
+
 const TodoBox = ({ id, value = "", finish = true }) => {
+  const dispatch = useDispatch();
+  const [update, setupdate] = useState(false);
+  const [deleted, setdeleted] = useState(false);
+
+  const _handleUpdate = () => {
+    setupdate(true);
+    setTimeout(() => {
+      dispatch(updateTodo(id, !finish));
+      setupdate(false);
+    }, 200);
+  };
+
+  const _handleDelete = () => {
+    setdeleted(true);
+    setupdate(true);
+
+    setTimeout(() => {
+      dispatch(removeTodo(id));
+      setdeleted(false);
+      setupdate(false);
+    }, 200);
+  };
+
   return (
     <div
       className={
-        "p-3 rounded-lg flex space-x-3 mb-3" +
-        (finish ? " bg-yellow-secondary" : " bg-yellow-primary")
+        "transition-all p-3 transform rounded-lg flex space-x-3 mb-3 duration-200" +
+        (finish ? " bg-yellow-secondary" : " bg-yellow-primary") +
+        (update && !deleted ? " opacity-0 translate-x-10" : "  translate-x-0") +
+        (deleted ? " opacity-0 -translate-x-10" : " ")
       }
     >
-      <button className="rounded-full border-2 border-black focus:outline-none">
+      <button
+        className="rounded-full border-2 border-black focus:outline-none"
+        onClick={_handleUpdate}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -31,7 +63,7 @@ const TodoBox = ({ id, value = "", finish = true }) => {
           {value}
         </p>
       </div>
-      <button className="focus:outline-none">
+      <button className="focus:outline-none" onClick={_handleDelete}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

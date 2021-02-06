@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTag } from "../redux/actions/tags";
 
-const SideNav = ({ nav, reference }) => {
+const SideNav = ({ nav }) => {
   const [inputLabel, setinputLabel] = useState(false);
-
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const tags = useSelector((state) => state.tag);
   const _handleInputLabel = () => {
     setinputLabel(!inputLabel);
   };
@@ -17,16 +21,28 @@ const SideNav = ({ nav, reference }) => {
     >
       <div className="flex flex-col pl-3 space-y-3 mb-10">
         <ul className="space-y-6">
-          <li className="relative p-1">
-            <a href="" className="text-2xl relative active block font-semibold">
-              Personal
-            </a>
-          </li>
-          <li className="w-max relative p-1">
-            <a href="" className="text-2xl animation-hover">
-              Work
-            </a>
-          </li>
+          {!auth.loading &&
+            auth.user &&
+            auth.user.tags.map((tag, i) => (
+              <li
+                className={
+                  "relative p-1 " + (tag === tags.current_tags ? " " : " w-max")
+                }
+                key={i}
+              >
+                <button
+                  className={
+                    "transition-all text-2xl focus:ring-0 outline-none text-left focus:outline-none" +
+                    (tag === tags.current_tags
+                      ? " relative active block font-semibold w-full"
+                      : " animation-hover")
+                  }
+                  onClick={() => dispatch(changeTag(tag))}
+                >
+                  {tag}
+                </button>
+              </li>
+            ))}
         </ul>
       </div>
 

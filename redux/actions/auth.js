@@ -6,6 +6,7 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
 } from "../types";
+import { changeTag } from "../actions/tags";
 
 export const logIn = ({ email, password }) => async (dispatch) => {
   dispatch({ type: AUTH_LOADING });
@@ -25,6 +26,7 @@ export const loadUser = () => async (dispatch) => {
           .collection("users")
           .doc(user.uid)
           .onSnapshot((data) => {
+            dispatch(changeTag(data.data().tags[0]));
             dispatch({
               type: LOAD_USER,
               payload: {
