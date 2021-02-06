@@ -1,10 +1,9 @@
 import { authFire, db } from "../../lib/fb";
-import { LOAD_USER, LOGIN_USER } from "../types";
+import { LOAD_USER, LOGIN_USER, LOGOUT_USER } from "../types";
 
 export const logIn = ({ email, password }) => async (dispatch) => {
   try {
     await authFire().signInWithEmailAndPassword(email, password);
-
     dispatch({ type: LOGIN_USER });
   } catch (err) {
     console.log(err);
@@ -32,6 +31,15 @@ export const loadUser = () => async (dispatch) => {
         console.log("No user");
       }
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const logOut = () => async (dispatch) => {
+  try {
+    await authFire().signOut();
+    dispatch({ type: LOGOUT_USER });
   } catch (err) {
     console.log(err);
   }
