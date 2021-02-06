@@ -24,10 +24,18 @@ export default function Home() {
     settodoValue(e.target.value);
   };
 
-  const _addTodo = () => {
+  const _addTodo = (e) => {
     if (todoValue !== "" || todoValue !== " ") {
       dispatch(addTodo(auth.user.id, todoValue, tags.current_tags));
       settodoValue("");
+    }
+  };
+  const _addTodoEnter = (e) => {
+    if (e.key === "Enter") {
+      if (todoValue !== "" || todoValue !== " ") {
+        dispatch(addTodo(auth.user.id, todoValue, tags.current_tags));
+        settodoValue("");
+      }
     }
   };
 
@@ -112,6 +120,8 @@ export default function Home() {
                 onChange={_inputTodo}
                 className="transition-all outline-none border-0 border-b-2 border-yellow-300 text-xl pb-3 w-full focus:border-b-4 focus:border-yellow-primary focus:outline-none focus:ring-0"
                 placeholder="create task..."
+                onKeyPress={_addTodoEnter}
+                value={todoValue}
               />
               <button
                 className="focus:outline-none transition transform focus:rotate-180"
