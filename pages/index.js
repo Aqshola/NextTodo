@@ -4,9 +4,20 @@ import TodoBox from "../components/TodoBox";
 import SideNav from "../components/SideNav";
 import WrapperTodo from "../components/TodoSection/WrapperTodo";
 
+import { authFire } from "../lib/fb";
+
 export default function Home() {
   const slidNav = useRef(null);
   const [nav, setnav] = useState(false);
+
+  const _handleLogOut = async () => {
+    try {
+      await authFire().signOut();
+      console.log("Success Logout");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const _handleNav = () => {
     setnav(!nav);
@@ -56,7 +67,10 @@ export default function Home() {
         <p className="font-bold col-span-1 md:col-span-1 text-center comfortaa ">
           1 february 2021
         </p>
-        <button className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300 comfortaa">
+        <button
+          className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300 comfortaa"
+          onClick={_handleLogOut}
+        >
           Logout
         </button>
       </nav>
