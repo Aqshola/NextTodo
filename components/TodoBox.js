@@ -59,7 +59,13 @@ const TodoBox = ({ id, value = "", finish = true }) => {
         </svg>
       </button>
       <div className={"flex-grow " + (finish ? " opacity-50" : " opacity-100")}>
-        <p className={"w-min font-semibold " + (finish ? " strike" : "")}>
+        <p
+          className={
+            " font-semibold " +
+            (finish ? " strike" : "") +
+            (value.split(" ").length > 4 ? " w-full" : " w-max")
+          }
+        >
           {value}
         </p>
       </div>
