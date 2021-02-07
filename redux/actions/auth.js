@@ -82,6 +82,7 @@ export const signUp = ({ email, password, name }) => async (dispatch) => {
     await createUser.user.updateProfile({
       displayName: name,
     });
+    dispatch({ type: SIGNUP_USER });
 
     await db()
       .collection("users")
@@ -91,8 +92,6 @@ export const signUp = ({ email, password, name }) => async (dispatch) => {
         created: Date.now(),
         tags: ["personal", "work"],
       });
-
-    dispatch({ type: SIGNUP_USER });
   } catch (err) {
     const errorList = {
       code: "",
