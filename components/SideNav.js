@@ -90,7 +90,7 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
         placeholder="New Label..."
         onChange={_handleChange}
         className={
-          "p-2 mt-10 border-0 rounded-r-2xl transition-all transform w-min outline-none  focus:outline-none focus:ring- focus:ring-black" +
+          "p-2 mt-10 border-0 rounded-r-2xl transition-all transform w-min outline-none  focus:outline-none focus:ring- focus:ring-black md:visible" +
           (inputLabel
             ? nav
               ? " visible opacity-100"
