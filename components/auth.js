@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Login from "../components/AuthSection/Login";
 import SignUp from "../components/AuthSection/SignUp";
+import { removeAlert } from "../redux/actions/alert";
 
 export default function auth() {
   const [register, setregister] = useState(false);
+  const dispatch = useDispatch();
 
   const _switchAuth = () => {
     setregister(!register);
+    dispatch(removeAlert());
   };
 
   return (

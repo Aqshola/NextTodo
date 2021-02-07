@@ -3,7 +3,6 @@ import { ADD_TODO, GET_TODO, REMOVE_TODO, UPDATE_TODO } from "../types";
 const initialState = {
   todo: [],
   loading: true,
-  errors: [],
 };
 
 export default function todo(state = initialState, action) {
