@@ -26,7 +26,7 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
 
   const _addTag = (e) => {
     if (e.key === "Enter") {
-      if (inputTag !== "" || inputTag !== " ") {
+      if (inputTag !== "" && inputTag !== " ") {
         dispatch(addTag(auth.user.id, inputTag));
         setinputTag("");
       }

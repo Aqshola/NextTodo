@@ -26,21 +26,21 @@ export default function Home() {
     if (!auth.loading && auth.user) {
       dispatch(getTodo(auth.user.id, tags.current_tags));
     }
-  }, [auth.loading, getTodo, tags.current_tags]);
+  }, [auth.loading, auth.user, getTodo, tags.current_tags]);
 
   const _inputTodo = (e) => {
     settodoValue(e.target.value);
   };
 
   const _addTodo = (e) => {
-    if (todoValue !== "" || todoValue !== " ") {
+    if (todoValue !== "" && todoValue !== " ") {
       dispatch(addTodo(auth.user.id, todoValue, tags.current_tags));
       settodoValue("");
     }
   };
   const _addTodoEnter = (e) => {
     if (e.key === "Enter") {
-      if (todoValue !== "" || todoValue !== " ") {
+      if (todoValue !== "" && todoValue !== " ") {
         dispatch(addTodo(auth.user.id, todoValue, tags.current_tags));
         settodoValue("");
       }
