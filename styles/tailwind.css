@@ -61,6 +61,20 @@ h5 {
   }
 }
 
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animation-fadeIn-fromBottom {
+  animation: fadeInFromBottom 500ms ease-in;
+}
 .animation-fadeIn-bottom {
   animation: fadeInBottom 200ms ease-in;
 }

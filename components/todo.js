@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="animation-fadeIn-fromBottom">
       <nav className="w-full grid grid-rows-2 grid-cols-3 md:grid-cols-10  justify-center  p-2 items-center col-span-10 col-start-2 px-3">
         <div className="flex items-center col-span-1 md:col-span-5">
           <button
@@ -199,6 +199,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
