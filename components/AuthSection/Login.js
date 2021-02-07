@@ -19,10 +19,14 @@ export default function Login({ switchAuth }) {
       onSubmit={handleSubmit(_handleLogin)}
     >
       <div className="w-72">
+        <label htmlFor="email" className="font-semibold mb-2 text-lg">
+          Email
+        </label>
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Enter your email"
+          id="email"
           className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0 w-full"
           ref={register({
             required: "please input email",
@@ -36,10 +40,14 @@ export default function Login({ switchAuth }) {
       </div>
 
       <div className="w-72">
+        <label htmlFor="password" className="font-semibold mb-2 text-lg">
+          Password
+        </label>
         <input
           type="password"
           name="password"
           placeholder="Enter your password"
+          id="password"
           className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0 w-full"
           ref={register({
             minLength: {
