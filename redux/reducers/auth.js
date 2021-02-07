@@ -4,6 +4,7 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   AUTH_LOADING,
+  SIGNUP_USER,
 } from "../types";
 
 const initialState = {
@@ -16,6 +17,7 @@ export default function auth(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case SIGNUP_USER:
     case LOGIN_USER:
     case LOAD_USER:
       return { ...state, user: payload, loading: false, islogged: true };
@@ -26,6 +28,7 @@ export default function auth(state = initialState, action) {
 
     case AUTH_LOADING:
       return { ...state, loading: true };
+
     default:
       return state;
   }

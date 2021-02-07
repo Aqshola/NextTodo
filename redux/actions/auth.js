@@ -5,6 +5,7 @@ import {
   LOAD_USER,
   LOGIN_USER,
   LOGOUT_USER,
+  SIGNUP_USER,
 } from "../types";
 import { changeTag } from "../actions/tags";
 
@@ -19,6 +20,7 @@ export const logIn = ({ email, password }) => async (dispatch) => {
 };
 
 export const loadUser = () => async (dispatch) => {
+  dispatch({ type: AUTH_LOADING });
   try {
     authFire().onAuthStateChanged(async (user) => {
       if (user) {
@@ -26,7 +28,6 @@ export const loadUser = () => async (dispatch) => {
           .collection("users")
           .doc(user.uid)
           .onSnapshot((data) => {
-            dispatch(changeTag(data.data().tags[0]));
             dispatch({
               type: LOAD_USER,
               payload: {
@@ -35,11 +36,40 @@ export const loadUser = () => async (dispatch) => {
               },
             });
           });
+        dispatch(changeTag("personal"));
       } else {
         dispatch(clearUser());
       }
     });
   } catch (err) {
+    console.log(err);
+  }
+};
+
+export const signUp = ({ email, password, name }) => async (dispatch) => {
+  dispatch({ type: AUTH_LOADING });
+  try {
+    const createUser = await authFire().createUserWithEmailAndPassword(
+      email,
+      password
+    );
+
+    await createUser.user.updateProfile({
+      displayName: name,
+    });
+
+    await db()
+      .collection("users")
+      .doc(createUser.user.uid)
+      .set({
+        name: createUser.user.displayName,
+        created: Date.now(),
+        tags: ["personal", "work"],
+      });
+
+    dispatch({ type: SIGNUP_USER });
+  } catch (err) {
+    dispatch({ type: CLEAR_USER });
     console.log(err);
   }
 };

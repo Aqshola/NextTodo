@@ -61,6 +61,7 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
         <ul className="space-y-6">
           {!auth.loading &&
             auth.user &&
+            auth.user.tags !== undefined &&
             auth.user.tags.map((tag, i) => (
               <li
                 className={

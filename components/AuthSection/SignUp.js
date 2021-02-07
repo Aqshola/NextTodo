@@ -1,31 +1,60 @@
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../redux/actions/auth";
+
 export default function SignUp({ switchAuth }) {
+  const { register, handleSubmit } = useForm();
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const _handleSignUp = async (data) => {
+    dispatch(signUp(data));
+  };
   return (
-    <form className="flex flex-col space-y-7 w-max justify-self-center ">
+    <form
+      className="flex flex-col space-y-7 w-max justify-self-center"
+      onSubmit={handleSubmit(_handleSignUp)}
+    >
       <input
         type="text"
-        name=""
-        id=""
+        name="name"
         placeholder="Name"
         className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0"
+        ref={register}
+        required
       />
       <input
         type="email"
-        name=""
-        id=""
+        name="email"
         placeholder="Email"
         className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0"
+        ref={register}
+        required
       />
 
       <input
         type="password"
-        name=""
-        id=""
+        name="password"
         placeholder="Enter your password"
         className="text-xl transition border-2 border-black  focus:border-yellow-primary focus:ring-0"
+        ref={register}
+        required
       />
       <div className=" flex flex-col space-y-3">
-        <button className="transition w-max bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0 hover:shadow-md hover:bg-yellow-500">
-          Sign Up
+        <button
+          className="transition w-full  bg-yellow-primary px-5 py-2 rounded-md font-bold text-lg text-white focus:outline-none focus:ring-0 hover:shadow-md hover:bg-yellow-500 flex items-center md:w-max justify-center disabled:opacity-50"
+          disabled={auth.loading}
+        >
+          <div
+            className={
+              "rounded-full h-10 w-10 border-4 border-t-4 border-yellow-primary animate-spin  " +
+              (auth.loading ? " block" : " hidden")
+            }
+            style={{ borderTopColor: "white" }}
+          >
+            {" "}
+          </div>
+          <p className={auth.loading ? " hidden" : " block"}>Sign Up</p>
         </button>
         <p>
           Have Account?{" "}
