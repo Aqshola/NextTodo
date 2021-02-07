@@ -8,6 +8,7 @@ import Head from "next/head";
 const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
+  console.log(process.env.API_KEY);
   useEffect(() => {
     dispatch(loadUser());
   }, [loadUser]);
