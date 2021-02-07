@@ -16,7 +16,10 @@ const Home = () => {
     <>
       <Head>
         <title>Todo Next</title>
-        <meta name="description" content="Todo List created using Next.js" />
+        <meta
+          name="description"
+          content="Todo Next || Todo List created using Next.js"
+        />
       </Head>
       {state.islogged ? <Todo /> : <Auth />}
     </>
