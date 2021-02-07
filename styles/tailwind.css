@@ -50,7 +50,7 @@ h5 {
   @apply md:shadow-none md:pr-0 md:h-auto md:relative md:opacity-100 md:visible md:w-auto md:col-span-2 md:translate-x-0;
 }
 
-@keyframes fadeInBottom {
+@keyframes fadeInFromRight {
   from {
     opacity: 0;
     transform: translateX(-50px);
@@ -75,6 +75,6 @@ h5 {
 .animation-fadeIn-fromBottom {
   animation: fadeInFromBottom 500ms ease-in;
 }
-.animation-fadeIn-bottom {
-  animation: fadeInBottom 200ms ease-in;
+.animation-fadeIn-fromRight {
+  animation: fadeInFromRight 200ms ease-in;
 }

@@ -82,6 +82,7 @@ export const signUp = ({ email, password, name }) => async (dispatch) => {
     await createUser.user.updateProfile({
       displayName: name,
     });
+
     dispatch({ type: SIGNUP_USER });
 
     await db()

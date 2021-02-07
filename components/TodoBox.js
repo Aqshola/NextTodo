@@ -29,7 +29,7 @@ const TodoBox = ({ id, value = "", finish = true }) => {
   return (
     <div
       className={
-        "transition-all p-3 transform rounded-lg flex space-x-3 mb-3 duration-200 animation-fadeIn-bottom " +
+        "transition-all p-3 transform rounded-lg flex space-x-3 mb-3 duration-200 animation-fadeIn-fromRight " +
         (finish ? " bg-yellow-secondary" : " bg-yellow-primary") +
         (update && !deleted ? " opacity-0 translate-x-10" : "  translate-x-0") +
         (deleted ? " opacity-0 -translate-x-10" : " ")

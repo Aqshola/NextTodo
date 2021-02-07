@@ -71,7 +71,7 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
               >
                 <button
                   className={
-                    "transition-all text-2xl focus:ring-0 outline-none text-left focus:outline-none animation-fadeIn-bottom" +
+                    "transition-all text-2xl focus:ring-0 outline-none text-left focus:outline-none animation-fadeIn-fromRight" +
                     (tag === tags.current_tags
                       ? " relative active block font-semibold w-full"
                       : " animation-hover")
