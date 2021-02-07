@@ -1,4 +1,4 @@
-import { ADD_TAG, CHANGE_TAG } from "../types";
+import { ADD_TAG, CHANGE_TAG, REMOVE_TAG } from "../types";
 
 const initialState = {
   current_tags: "",
@@ -12,6 +12,7 @@ export default function tags(state = initialState, action) {
         ...state,
         current_tags: payload,
       };
+    case REMOVE_TAG:
     case ADD_TAG:
     default:
       return state;

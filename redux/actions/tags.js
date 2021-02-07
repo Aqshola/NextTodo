@@ -1,4 +1,4 @@
-import { ADD_TAG, CHANGE_TAG } from "../types";
+import { ADD_TAG, CHANGE_TAG, REMOVE_TAG } from "../types";
 import { db } from "../../lib/fb";
 
 export const changeTag = (tag) => async (dispatch) => {
@@ -46,7 +46,7 @@ export const removeTag = (userId, tag) => async (dispatch) => {
       });
 
     dispatch({
-      type: ADD_TAG,
+      type: REMOVE_TAG,
     });
 
     return batch.commit();

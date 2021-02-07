@@ -71,7 +71,7 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
               >
                 <button
                   className={
-                    "transition-all text-2xl focus:ring-0 outline-none text-left focus:outline-none" +
+                    "transition-all text-2xl focus:ring-0 outline-none text-left focus:outline-none animation-fadeIn-bottom" +
                     (tag === tags.current_tags
                       ? " relative active block font-semibold w-full"
                       : " animation-hover")
@@ -90,11 +90,11 @@ const SideNav = ({ nav, handleNav, parentButton }) => {
         placeholder="New Label..."
         onChange={_handleChange}
         className={
-          "p-2 mt-10 border-0 rounded-r-2xl transition-all transform w-min outline-none focus:ring-0 focus:outline-none" +
+          "p-2 mt-10 border-0 rounded-r-2xl transition-all transform w-min outline-none  focus:outline-none focus:ring- focus:ring-black" +
           (inputLabel
             ? nav
               ? " visible opacity-100"
-              : " "
+              : " invisible"
             : " -translate-x-10 invisible opacity-0")
         }
         onKeyPress={_addTag}

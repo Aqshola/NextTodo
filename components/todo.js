@@ -4,25 +4,29 @@ import SideNav from "../components/SideNav";
 import WrapperTodo from "./TodoSection/WrapperTodo";
 import { logOut } from "../redux/actions/auth";
 import { getTodo, addTodo } from "../redux/actions/todo";
-import { removeTag } from "../redux/actions/tags";
+import { changeTag, removeTag } from "../redux/actions/tags";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const [nav, setnav] = useState(false);
   const [todoValue, settodoValue] = useState("");
+  const currentDate = new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const tags = useSelector((state) => state.tag);
   const todos = useSelector((state) => state.todo);
-
   const buttonSide = useRef(null);
 
   useEffect(() => {
     if (!auth.loading && auth.user) {
       dispatch(getTodo(auth.user.id, tags.current_tags));
     }
-  }, [auth.loading, auth.user, getTodo, tags.current_tags]);
+  }, [auth.loading, getTodo, tags.current_tags]);
 
   const _inputTodo = (e) => {
     settodoValue(e.target.value);
@@ -45,6 +49,11 @@ export default function Home() {
 
   const _handleLogOut = async () => {
     dispatch(logOut());
+  };
+
+  const _removeTag = () => {
+    dispatch(removeTag(auth.user.id, tags.current_tags));
+    dispatch(changeTag(auth.user.tags[0]));
   };
 
   const _handleNav = () => {
@@ -98,7 +107,7 @@ export default function Home() {
           <h5 className="hidden md:block font-semibold ">Todo</h5>
         </div>
         <p className="font-bold col-span-1 md:col-span-1 text-center comfortaa ">
-          1 february 2021
+          {currentDate}
         </p>
         <button
           className="transition font-bold col-span-1 md:col-span-4 text-right w-min justify-self-end p-1 rounded hover:bg-yellow-300 comfortaa"
@@ -117,14 +126,14 @@ export default function Home() {
               </h2>
               <button
                 className="w-max p-2 text-sm -right-0  top-0 bg-red-primary text-white font-bold rounded-xl md:-right-20 hover:bg-red-700  focus:outline-none focus:ring-0"
-                onClick={() =>
-                  dispatch(removeTag(auth.user.id, tags.current_tags))
-                }
+                onClick={_removeTag}
               >
                 Delete {tags.current_tags}
               </button>
             </div>
-            <h3 className="text-3xl comfortaa">Hi User!</h3>
+            <h3 className="text-3xl comfortaa">
+              Hi {!auth.loading && auth.user && auth.user.name}!
+            </h3>
 
             <div className="flex items-center justify-center mt-5 w-full">
               <input

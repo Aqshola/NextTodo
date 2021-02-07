@@ -15,3 +15,4 @@ export const CREATE_ALERT = "CREATE_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const CHANGE_TAG = "CHANGE_TAG";
 export const ADD_TAG = "ADD_TAG";
+export const REMOVE_TAG = "REMOVE_TAG";
